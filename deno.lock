@@ -6,7 +6,9 @@
       "jsr:@cliffy/flags@1.0.0-rc.4": "jsr:@cliffy/flags@1.0.0-rc.4",
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
       "jsr:@smoke-cloud/fds-inspect-core@0.1.1": "jsr:@smoke-cloud/fds-inspect-core@0.1.1",
+      "jsr:@smoke-cloud/fds-inspect-core@0.1.2": "jsr:@smoke-cloud/fds-inspect-core@0.1.2",
       "jsr:@smoke-cloud/fds-inspect@0.1.1": "jsr:@smoke-cloud/fds-inspect@0.1.1",
+      "jsr:@smoke-cloud/fds-inspect@0.1.2": "jsr:@smoke-cloud/fds-inspect@0.1.2",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
       "jsr:@std/console@0.221": "jsr:@std/console@0.221.0",
@@ -37,10 +39,19 @@
       "@smoke-cloud/fds-inspect-core@0.1.1": {
         "integrity": "950e87101270e34af06c9fd295a26cc6dfda30a3e86daa59026117397f4063a7"
       },
+      "@smoke-cloud/fds-inspect-core@0.1.2": {
+        "integrity": "174e477c07dbb964f47f12203eeabc574888d8972ced8e17a9b17d5d5a7ea4ca"
+      },
       "@smoke-cloud/fds-inspect@0.1.1": {
         "integrity": "7f249cb3ed94bf67d21e6afbb5d20aa38d63494fe583c5ce6e1453121b9e0e3c",
         "dependencies": [
           "jsr:@smoke-cloud/fds-inspect-core@0.1.1",
+          "npm:handlebars@4.7.8"
+        ]
+      },
+      "@smoke-cloud/fds-inspect@0.1.2": {
+        "integrity": "2c4f9309a7a12127ca64ea7b635520fb91369282fd117da96772a6c8b0c8d3c1",
+        "dependencies": [
           "npm:handlebars@4.7.8"
         ]
       },

@@ -1,17 +1,12 @@
 import {
   countCells,
   type FdsFile,
-  type InputSummary,
-  type Resolution,
-  summarise_input,
-  type VerificationSummary,
-  verifyInput,
-} from "jsr:@smoke-cloud/fds-inspect-core@0.1.1";
-import "jsr:@smoke-cloud/fds-inspect@0.1.1";
+} from "jsr:@smoke-cloud/fds-inspect-core@0.1.2";
+import "jsr:@smoke-cloud/fds-inspect@0.1.2";
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
 import { open } from "./open.ts";
 import * as path from "jsr:@std/path@0.225.2";
-import { getJson, verifyInputRender } from "jsr:@smoke-cloud/fds-inspect@0.1.1";
+import { getJson, verifyInputRender } from "jsr:@smoke-cloud/fds-inspect@0.1.2";
 
 await new Command()
   .name("tway-server-manager")
