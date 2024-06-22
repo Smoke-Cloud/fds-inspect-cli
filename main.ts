@@ -1,16 +1,7 @@
-import {
-  type FdsFile,
-  verifyInput,
-} from "jsr:@smoke-cloud/fds-inspect-core@0.1.8";
-import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect-core@0.1.8";
+import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.10";
+import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.10";
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
 import { open } from "./open.ts";
-import {
-  getJson,
-  getJsonTemp,
-  renderTypstPdf,
-  renderVerificationTypst,
-} from "jsr:@smoke-cloud/fds-inspect@0.1.7";
 
 await new Command()
   .name("tway-server-manager")
@@ -28,10 +19,10 @@ await new Command()
   .command("count-cells", "Count the total number of cells")
   // .option("-f, --foo", "Foo option.")
   .arguments("<input-path:string>")
-  .action(async (_options, ...args) => {
-    const fdsFile = await getJson(args[0]);
-    const nCells = fdsInspect.summary.countCells(fdsFile);
-    console.log(nCells);
+  .action(async () => {
+    // const fdsData = await getJsonTemp(args[0]);
+    // const nCells = fdsInspect.summary.countCells(fdsData);
+    // console.log(nCells);
   })
   // Get Threadway Send
   .command("meshes", "Display information on each mesh")
@@ -130,16 +121,22 @@ await new Command()
   .arguments("<input-path:string>")
   .action(async (_options, ...args) => {
     const inputPath = args[0];
-    const fdsFile: FdsFile = await getJsonTemp(inputPath);
-    const verificationSummary = verifyInput(fdsFile);
-    const inputSummary = fdsInspect.summary.summarise_input(fdsFile);
-    const typst = renderVerificationTypst(inputSummary, verificationSummary);
+    const fdsData = await fdsInspect.getJsonTemp(inputPath);
+    const verificationSummary = fdsInspectCore.verifyInput(
+      fdsData,
+      fdsInspectCore.stdTestList,
+    );
+    const inputSummary = fdsInspectCore.summary.summarise_input(fdsData);
+    const typst = fdsInspect.renderVerificationTypst(
+      inputSummary,
+      verificationSummary,
+    );
     const tempFile = await Deno.makeTempFile({
-      prefix: fdsFile.chid,
+      prefix: fdsData.chid,
       suffix: "_Verification.pdf",
     });
     try {
-      await renderTypstPdf(tempFile, typst);
+      await fdsInspect.renderTypstPdf(tempFile, typst);
       await open(tempFile);
     } catch (e) {
       console.error(e.message);

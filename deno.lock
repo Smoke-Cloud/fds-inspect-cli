@@ -5,18 +5,14 @@
       "jsr:@cliffy/command@1.0.0-rc.4": "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@cliffy/flags@1.0.0-rc.4": "jsr:@cliffy/flags@1.0.0-rc.4",
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.3": "jsr:@smoke-cloud/fds-inspect-core@0.1.3",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.6": "jsr:@smoke-cloud/fds-inspect-core@0.1.6",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.7": "jsr:@smoke-cloud/fds-inspect-core@0.1.7",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.8": "jsr:@smoke-cloud/fds-inspect-core@0.1.8",
-      "jsr:@smoke-cloud/fds-inspect@0.1.7": "jsr:@smoke-cloud/fds-inspect@0.1.7",
+      "jsr:@smoke-cloud/fds-inspect-core@0.1.10": "jsr:@smoke-cloud/fds-inspect-core@0.1.10",
+      "jsr:@smoke-cloud/fds-inspect@0.1.10": "jsr:@smoke-cloud/fds-inspect@0.1.10",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
       "jsr:@std/console@0.221": "jsr:@std/console@0.221.0",
       "jsr:@std/fmt@0.221": "jsr:@std/fmt@0.221.0",
       "jsr:@std/path@0.225.2": "jsr:@std/path@0.225.2",
-      "jsr:@std/text@0.221": "jsr:@std/text@0.221.0",
-      "npm:handlebars@4.7.8": "npm:handlebars@4.7.8"
+      "jsr:@std/text@0.221": "jsr:@std/text@0.221.0"
     },
     "jsr": {
       "@cliffy/command@1.0.0-rc.4": {
@@ -37,23 +33,11 @@
           "jsr:@std/console@0.221"
         ]
       },
-      "@smoke-cloud/fds-inspect-core@0.1.3": {
-        "integrity": "a90433f1f1ffafd6db24464c0a7764858258880a1417a61cd953d00cf6925cb1"
+      "@smoke-cloud/fds-inspect-core@0.1.10": {
+        "integrity": "fe7c189eef3e41da57592d7d4290707e98706589dc2d62ca6ca45bc96ef7e827"
       },
-      "@smoke-cloud/fds-inspect-core@0.1.6": {
-        "integrity": "f014a12eb041de3a434ff756611fc3dedeaee1b329d931ba9325b3417b172a1d"
-      },
-      "@smoke-cloud/fds-inspect-core@0.1.7": {
-        "integrity": "2599811a229357cdbfd062387feed9ea6ef79f7b0ff8e5a99b792f97a9c044e7"
-      },
-      "@smoke-cloud/fds-inspect-core@0.1.8": {
-        "integrity": "2bce8c455afff3cb1d3a126cddb3d4c977303a088abe4a31ccec30d7cb24e1eb"
-      },
-      "@smoke-cloud/fds-inspect@0.1.7": {
-        "integrity": "6ddab00ff70df7433f9452505d56235d380afe4375d5ed4c1220ccb4064661cd",
-        "dependencies": [
-          "jsr:@smoke-cloud/fds-inspect-core@0.1.7"
-        ]
+      "@smoke-cloud/fds-inspect@0.1.10": {
+        "integrity": "995745fd4dab4e090a5d245c8e8e61296cc9196585a227dbe1b1724fd77488e3"
       },
       "@std/assert@0.221.0": {
         "integrity": "a5f1aa6e7909dbea271754fd4ab3f4e687aeff4873b4cef9a320af813adb489a"
@@ -78,38 +62,6 @@
         "dependencies": [
           "jsr:@std/assert@^0.221.0"
         ]
-      }
-    },
-    "npm": {
-      "handlebars@4.7.8": {
-        "integrity": "sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==",
-        "dependencies": {
-          "minimist": "minimist@1.2.8",
-          "neo-async": "neo-async@2.6.2",
-          "source-map": "source-map@0.6.1",
-          "uglify-js": "uglify-js@3.18.0",
-          "wordwrap": "wordwrap@1.0.0"
-        }
-      },
-      "minimist@1.2.8": {
-        "integrity": "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==",
-        "dependencies": {}
-      },
-      "neo-async@2.6.2": {
-        "integrity": "sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==",
-        "dependencies": {}
-      },
-      "source-map@0.6.1": {
-        "integrity": "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==",
-        "dependencies": {}
-      },
-      "uglify-js@3.18.0": {
-        "integrity": "sha512-SyVVbcNBCk0dzr9XL/R/ySrmYf0s372K6/hFklzgcp2lBFyXtw4I7BOdDjlLhE1aVqaI/SHWXWmYdlZxuyF38A==",
-        "dependencies": {}
-      },
-      "wordwrap@1.0.0": {
-        "integrity": "sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==",
-        "dependencies": {}
       }
     }
   },
