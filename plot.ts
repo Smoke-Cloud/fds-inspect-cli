@@ -1,17 +1,15 @@
 import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.11";
-import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.11";
 import Chart, {
-    ChartConfiguration,
-    ChartData,
-    DefaultDataPoint,
-    Point,
-} from "npm:chart.js/auto";
-import annotationPlugin from "npm:chartjs-plugin-annotation";
+    type ChartConfiguration,
+    type ChartData,
+    type DefaultDataPoint,
+    type Point,
+} from "npm:chart.js@4.4.3/auto";
+import annotationPlugin from "npm:chartjs-plugin-annotation@3.0.1";
 
 // import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
 import { createCanvas } from "jsr:@gfx/canvas@0.5.6";
 import * as path from "jsr:@std/path@0.225.2";
-import pattern from "npm:patternomaly";
 
 Chart.register(annotationPlugin);
 
@@ -120,7 +118,7 @@ export async function plotDv(
         dash?: number[];
     })[],
     title: string,
-    plotConfig?: {},
+    _plotConfig?: {},
     extras?: {
         sprinklerTime?: number;
         detectorTime?: number;
@@ -441,15 +439,13 @@ export function plotHRRDV(
 }
 
 // Weighted moving average
-function wma(dv: fdsInspectCore.smv.DataVector, window: number) {
+function _wma(dv: fdsInspectCore.smv.DataVector, window: number) {
     if (dv.values.length <= 1) {
         // The weighted average of an empty vector or a vector that has a
         // single element is just the same vector
         throw new Error("cannot average empty vector");
     }
     for (const [i, p] of dv.values.entries()) {
-        let val = 0;
-        let n = 0;
         // The total sum
         let sum = 0;
         // First the actual value is fully weighted

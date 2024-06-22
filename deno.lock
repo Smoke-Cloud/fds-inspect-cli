@@ -31,7 +31,9 @@
       "jsr:@std/streams@^0.224.4": "jsr:@std/streams@0.224.5",
       "jsr:@std/text@0.221": "jsr:@std/text@0.221.0",
       "npm:chart.js": "npm:chart.js@4.4.0",
+      "npm:chart.js@4.4.3": "npm:chart.js@4.4.3",
       "npm:chartjs-plugin-annotation": "npm:chartjs-plugin-annotation@3.0.1_chart.js@4.4.0",
+      "npm:chartjs-plugin-annotation@3.0.1": "npm:chartjs-plugin-annotation@3.0.1_chart.js@4.4.0",
       "npm:patternomaly": "npm:patternomaly@1.3.2"
     },
     "jsr": {
@@ -173,6 +175,12 @@
       },
       "chart.js@4.4.0": {
         "integrity": "sha512-vQEj6d+z0dcsKLlQvbKIMYFHd3t8W/7L2vfJIbYcfyPcRx92CsHqECpueN8qVGNlKyDcr5wBrYAYKnfu/9Q1hQ==",
+        "dependencies": {
+          "@kurkle/color": "@kurkle/color@0.3.2"
+        }
+      },
+      "chart.js@4.4.3": {
+        "integrity": "sha512-qK1gkGSRYcJzqrrzdR6a+I0vQ4/R+SoODXyAjscQ/4mzuNzySaMCd+hyVxitSY1+L2fjPD1Gbn+ibNqRmwQeLw==",
         "dependencies": {
           "@kurkle/color": "@kurkle/color@0.3.2"
         }
