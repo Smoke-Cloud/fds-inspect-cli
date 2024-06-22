@@ -1,7 +1,8 @@
 import {
   type FdsFile,
   verifyInput,
-} from "jsr:@smoke-cloud/fds-inspect-core@0.1.7";
+} from "jsr:@smoke-cloud/fds-inspect-core@0.1.8";
+import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect-core@0.1.8";
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
 import { open } from "./open.ts";
 import {
@@ -10,8 +11,6 @@ import {
   renderTypstPdf,
   renderVerificationTypst,
 } from "jsr:@smoke-cloud/fds-inspect@0.1.7";
-import { countCells, summarise_input } from "../fds-inspect-core/summary.ts";
-// import { getJson, verifyInputRender } from "jsr:@smoke-cloud/fds-inspect@0.1.3";
 
 await new Command()
   .name("tway-server-manager")
@@ -31,7 +30,7 @@ await new Command()
   .arguments("<input-path:string>")
   .action(async (_options, ...args) => {
     const fdsFile = await getJson(args[0]);
-    const nCells = countCells(fdsFile);
+    const nCells = fdsInspect.summary.countCells(fdsFile);
     console.log(nCells);
   })
   // Get Threadway Send
@@ -133,7 +132,7 @@ await new Command()
     const inputPath = args[0];
     const fdsFile: FdsFile = await getJsonTemp(inputPath);
     const verificationSummary = verifyInput(fdsFile);
-    const inputSummary = summarise_input(fdsFile);
+    const inputSummary = fdsInspect.summary.summarise_input(fdsFile);
     const typst = renderVerificationTypst(inputSummary, verificationSummary);
     const tempFile = await Deno.makeTempFile({
       prefix: fdsFile.chid,
