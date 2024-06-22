@@ -5,11 +5,10 @@
       "jsr:@cliffy/command@1.0.0-rc.4": "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@cliffy/flags@1.0.0-rc.4": "jsr:@cliffy/flags@1.0.0-rc.4",
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.1": "jsr:@smoke-cloud/fds-inspect-core@0.1.1",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.2": "jsr:@smoke-cloud/fds-inspect-core@0.1.2",
-      "jsr:@smoke-cloud/fds-inspect@0.1.1": "jsr:@smoke-cloud/fds-inspect@0.1.1",
-      "jsr:@smoke-cloud/fds-inspect@0.1.2": "jsr:@smoke-cloud/fds-inspect@0.1.2",
-      "jsr:@smoke-cloud/fds-inspect@0.1.3": "jsr:@smoke-cloud/fds-inspect@0.1.3",
+      "jsr:@smoke-cloud/fds-inspect-core@0.1.3": "jsr:@smoke-cloud/fds-inspect-core@0.1.3",
+      "jsr:@smoke-cloud/fds-inspect-core@0.1.6": "jsr:@smoke-cloud/fds-inspect-core@0.1.6",
+      "jsr:@smoke-cloud/fds-inspect-core@0.1.7": "jsr:@smoke-cloud/fds-inspect-core@0.1.7",
+      "jsr:@smoke-cloud/fds-inspect@0.1.7": "jsr:@smoke-cloud/fds-inspect@0.1.7",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
       "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
       "jsr:@std/console@0.221": "jsr:@std/console@0.221.0",
@@ -37,31 +36,17 @@
           "jsr:@std/console@0.221"
         ]
       },
-      "@smoke-cloud/fds-inspect-core@0.1.1": {
-        "integrity": "950e87101270e34af06c9fd295a26cc6dfda30a3e86daa59026117397f4063a7"
+      "@smoke-cloud/fds-inspect-core@0.1.3": {
+        "integrity": "a90433f1f1ffafd6db24464c0a7764858258880a1417a61cd953d00cf6925cb1"
       },
-      "@smoke-cloud/fds-inspect-core@0.1.2": {
-        "integrity": "174e477c07dbb964f47f12203eeabc574888d8972ced8e17a9b17d5d5a7ea4ca"
+      "@smoke-cloud/fds-inspect-core@0.1.6": {
+        "integrity": "f014a12eb041de3a434ff756611fc3dedeaee1b329d931ba9325b3417b172a1d"
       },
-      "@smoke-cloud/fds-inspect@0.1.1": {
-        "integrity": "7f249cb3ed94bf67d21e6afbb5d20aa38d63494fe583c5ce6e1453121b9e0e3c",
-        "dependencies": [
-          "jsr:@smoke-cloud/fds-inspect-core@0.1.1",
-          "npm:handlebars@4.7.8"
-        ]
+      "@smoke-cloud/fds-inspect-core@0.1.7": {
+        "integrity": "2599811a229357cdbfd062387feed9ea6ef79f7b0ff8e5a99b792f97a9c044e7"
       },
-      "@smoke-cloud/fds-inspect@0.1.2": {
-        "integrity": "2c4f9309a7a12127ca64ea7b635520fb91369282fd117da96772a6c8b0c8d3c1",
-        "dependencies": [
-          "jsr:@smoke-cloud/fds-inspect-core@0.1.2",
-          "npm:handlebars@4.7.8"
-        ]
-      },
-      "@smoke-cloud/fds-inspect@0.1.3": {
-        "integrity": "f3b6eaab401bd28e9f41226076df8ca2703b1b47e2c6548bd66656443ac61432",
-        "dependencies": [
-          "npm:handlebars@4.7.8"
-        ]
+      "@smoke-cloud/fds-inspect@0.1.7": {
+        "integrity": "6ddab00ff70df7433f9452505d56235d380afe4375d5ed4c1220ccb4064661cd"
       },
       "@std/assert@0.221.0": {
         "integrity": "a5f1aa6e7909dbea271754fd4ab3f4e687aeff4873b4cef9a320af813adb489a"
@@ -95,7 +80,7 @@
           "minimist": "minimist@1.2.8",
           "neo-async": "neo-async@2.6.2",
           "source-map": "source-map@0.6.1",
-          "uglify-js": "uglify-js@3.17.4",
+          "uglify-js": "uglify-js@3.18.0",
           "wordwrap": "wordwrap@1.0.0"
         }
       },
@@ -111,8 +96,8 @@
         "integrity": "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==",
         "dependencies": {}
       },
-      "uglify-js@3.17.4": {
-        "integrity": "sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==",
+      "uglify-js@3.18.0": {
+        "integrity": "sha512-SyVVbcNBCk0dzr9XL/R/ySrmYf0s372K6/hFklzgcp2lBFyXtw4I7BOdDjlLhE1aVqaI/SHWXWmYdlZxuyF38A==",
         "dependencies": {}
       },
       "wordwrap@1.0.0": {

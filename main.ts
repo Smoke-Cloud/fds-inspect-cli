@@ -1,11 +1,17 @@
 import {
-  countCells,
   type FdsFile,
-} from "jsr:@smoke-cloud/fds-inspect-core@0.1.2";
+  verifyInput,
+} from "jsr:@smoke-cloud/fds-inspect-core@0.1.7";
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
 import { open } from "./open.ts";
-import * as path from "jsr:@std/path@0.225.2";
-import { getJson, verifyInputRender } from "jsr:@smoke-cloud/fds-inspect@0.1.3";
+import {
+  getJson,
+  getJsonTemp,
+  renderTypstPdf,
+  renderVerificationTypst,
+} from "jsr:@smoke-cloud/fds-inspect@0.1.7";
+import { countCells, summarise_input } from "../fds-inspect-core/summary.ts";
+// import { getJson, verifyInputRender } from "jsr:@smoke-cloud/fds-inspect@0.1.3";
 
 await new Command()
   .name("tway-server-manager")
@@ -125,14 +131,21 @@ await new Command()
   .arguments("<input-path:string>")
   .action(async (_options, ...args) => {
     const inputPath = args[0];
-    const fdsFile: FdsFile = await getJson(inputPath);
-    const rendered = await verifyInputRender(fdsFile);
-    const htmlOutput = path.join(path.dirname(inputPath), "Verification.html");
-    await Deno.writeTextFile(
-      htmlOutput,
-      rendered,
-    );
-    await open(htmlOutput);
+    const fdsFile: FdsFile = await getJsonTemp(inputPath);
+    const verificationSummary = verifyInput(fdsFile);
+    const inputSummary = summarise_input(fdsFile);
+    const typst = renderVerificationTypst(inputSummary, verificationSummary);
+    const tempFile = await Deno.makeTempFile({
+      prefix: fdsFile.chid,
+      suffix: "_Verification.pdf",
+    });
+    try {
+      await renderTypstPdf(tempFile, typst);
+      await open(tempFile);
+    } catch (e) {
+      console.error(e.message);
+      Deno.exit(1);
+    }
   })
   .command("copy-inputs", "Bar sub-command.")
   .option("--master", "Pull the master branch version.")
