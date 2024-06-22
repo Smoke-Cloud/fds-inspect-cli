@@ -1,5 +1,5 @@
-import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.11";
-import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.11";
+import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.12";
+import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.12";
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
 import { open } from "./open.ts";
 import * as path from "jsr:@std/path@0.225.2";
