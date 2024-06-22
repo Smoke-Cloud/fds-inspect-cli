@@ -38,6 +38,7 @@
       "@cliffy/command@1.0.0-rc.4": {
         "integrity": "709884ffe0f53ce3edafa92b58223634397878fbf6dcabe0c74ea0108273b9f7",
         "dependencies": [
+          "jsr:@cliffy/flags@1.0.0-rc.4",
           "jsr:@cliffy/table@1.0.0-rc.4",
           "jsr:@std/fmt@0.221",
           "jsr:@std/text@0.221"
@@ -75,7 +76,11 @@
         ]
       },
       "@smoke-cloud/fds-inspect-core@0.1.11": {
-        "integrity": "8739b2d61b86f0a5ce4d7d0dcb65fe517c49652b1ef806e8780470c617115ec4"
+        "integrity": "8739b2d61b86f0a5ce4d7d0dcb65fe517c49652b1ef806e8780470c617115ec4",
+        "dependencies": [
+          "jsr:@cliffy/flags@1.0.0-rc.4",
+          "jsr:@std/csv@0.224.3"
+        ]
       },
       "@smoke-cloud/fds-inspect@0.1.11": {
         "integrity": "c43f368b89754170996ee59e44ee0186c881dd8a980cf6002b28a31f84bfc44d"
