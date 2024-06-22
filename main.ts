@@ -1,7 +1,10 @@
-import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.10";
-import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.10";
+import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.11";
+import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.11";
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
 import { open } from "./open.ts";
+import * as path from "jsr:@std/path@0.225.2";
+import "./plot.ts";
+import { plotHRRDV } from "./plot.ts";
 
 await new Command()
   .name("tway-server-manager")
@@ -122,9 +125,9 @@ await new Command()
   .action(async (_options, ...args) => {
     const inputPath = args[0];
     const fdsData = await fdsInspect.getJsonTemp(inputPath);
-    const verificationSummary = fdsInspectCore.verifyInput(
-      fdsData,
+    const verificationSummary = await fdsInspectCore.verifyInput(
       fdsInspectCore.stdTestList,
+      fdsData,
     );
     const inputSummary = fdsInspectCore.summary.summarise_input(fdsData);
     const typst = fdsInspect.renderVerificationTypst(
@@ -143,17 +146,62 @@ await new Command()
       Deno.exit(1);
     }
   })
-  .command("copy-inputs", "Bar sub-command.")
-  .option("--master", "Pull the master branch version.")
-  .arguments("<input-path:string>")
+  .command("plot", "plot.")
   .action(async () => {
-    // const fdsFile = await getJson(args[0]);
   })
   .command("verify", "Verify both the input and the output")
   // .option("--master", "Pull the master branch version.")
-  .arguments("<input-path:string>")
-  .action(async () => {
-    // const fdsFile = await getJson(args[0]);
+  .arguments("<output-path:string>")
+  .action(async (_options, ...args) => {
+    const inputPath = args[0];
+    const smvData = await fdsInspect.getJsonSmv(inputPath);
+    const hrrData = await smvData.getHrr();
+    let hrrPlotFile;
+    if (hrrData) {
+      hrrPlotFile = await Deno.makeTempFile({ dir: ".", suffix: ".png" });
+      await plotHRRDV(
+        hrrPlotFile,
+        hrrData,
+        "Realised Heat Release Rate",
+        undefined,
+        {
+          hrrSpec: {
+            type: "simple",
+            tau_q: -300,
+            peak: 1000,
+          },
+        },
+      );
+    }
+
+    const dirPath = path.dirname(inputPath);
+    const inPath = path.join(dirPath, smvData.input_file);
+    const fdsData = await fdsInspect.getJsonTemp(inPath);
+    const verificationSummary = await fdsInspectCore.verifyInput(
+      fdsInspectCore.stdTestList,
+      fdsData,
+      smvData,
+    );
+    const inputSummary = fdsInspectCore.summary.summarise_input(fdsData);
+    const typst = fdsInspect.renderVerificationTypst(
+      inputSummary,
+      verificationSummary,
+      hrrPlotFile,
+    );
+    const tempFile = await Deno.makeTempFile({
+      prefix: fdsData.chid,
+      suffix: "_Verification.pdf",
+    });
+    try {
+      await fdsInspect.renderTypstPdf(tempFile, typst);
+      await open(tempFile);
+      if (hrrPlotFile) {
+        await Deno.remove(hrrPlotFile);
+      }
+    } catch (e) {
+      console.error(e.message);
+      Deno.exit(1);
+    }
   })
   .command("rename", "Rename a simulation")
   // .option("--master", "Pull the master branch version.")
