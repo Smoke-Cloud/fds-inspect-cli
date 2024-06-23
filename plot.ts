@@ -118,7 +118,6 @@ export async function plotDv(
         dash?: number[];
     })[],
     title: string,
-    _plotConfig?: {},
     extras?: {
         sprinklerTime?: number;
         detectorTime?: number;
@@ -435,7 +434,7 @@ export function plotHRRDV(
     extras.door = spec?.door;
     extras.sprinklerTime = spec?.sprinklerTime;
     extras.detectorTime = spec?.detectorTime;
-    return plotDv(plotPath, vecs, name, {}, extras);
+    return plotDv(plotPath, vecs, name, extras);
 }
 
 // Weighted moving average

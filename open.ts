@@ -1,3 +1,4 @@
+// deno-lint-ignore-file require-await
 import { join } from "jsr:@std/path@0.225.2";
 const { os } = Deno.build;
 
@@ -38,7 +39,8 @@ const hasWslEnv = async () => {
   }
 
   try {
-    let build = Deno.readTextFileSync("/proc/version").toString().toLowerCase();
+    const build = Deno.readTextFileSync("/proc/version").toString()
+      .toLowerCase();
 
     return build.includes("microsoft") ? !(await isDocker()) : false;
   } catch (_) {
@@ -116,7 +118,7 @@ const localXdgOpenPath = join(getDir(import.meta.url), "xdg-open");
 export async function open(
   target: string,
   options?: OpenOptions,
-): Promise<Deno.Process> {
+): Promise<Deno.ChildProcess> {
   if (typeof target !== "string") {
     throw new TypeError("Expected a target");
   }
@@ -175,7 +177,7 @@ export async function open(
       cliArguments.push(...appArguments);
     }
   } else {
-    let wsl = await isWsl();
+    const wsl = await isWsl();
     if (options.app) {
       command = options.app;
     } else if (wsl) {
@@ -186,7 +188,7 @@ export async function open(
         getDir(import.meta.url) === "/";
 
       // Check if local `xdg-open` exists and is executable.
-      let exeLocalXdgOpen = await isFile(localXdgOpenPath);
+      const exeLocalXdgOpen = await isFile(localXdgOpenPath);
 
       const useSystemXdgOpen = isBundled || !exeLocalXdgOpen;
       command = useSystemXdgOpen ? "xdg-open" : localXdgOpenPath;
@@ -203,34 +205,17 @@ export async function open(
     cliArguments.push("--args", ...appArguments);
   }
 
-  /* Options for the spawned process */
-  const runOptions: Deno.RunOptions = {
-    cmd: [command, ...cliArguments],
+  const cmd = new Deno.Command(command, {
+    args: cliArguments,
     stdin: "piped",
     stderr: "piped",
     stdout: "piped",
-  };
+  });
 
-  const subprocess = Deno.run(runOptions);
-  await subprocess.status();
+  const subprocess = cmd.spawn();
+  // await subprocess.status();
 
   // command: open /Applications/Google\ Chrome.app {url}
-  if (options.wait) {
-    return new Promise(async (resolve, reject) => {
-      const status = await subprocess.status();
-      const err = await subprocess.stderrOutput();
-      if (err) {
-        if (err.length !== 0) reject(new TextDecoder().decode(err));
-      }
-
-      if (status.code && status.code > 0) {
-        reject(new Error(`Exited with code ${status.code}`));
-        return;
-      }
-
-      resolve(subprocess);
-    });
-  }
 
   return subprocess;
 }
