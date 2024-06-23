@@ -1,8 +1,8 @@
-import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.12";
-import * as fdsInspect from "jsr:@smoke-cloud/fds-inspect@0.1.12";
-import { Command } from "jsr:@cliffy/command@1.0.0-rc.4";
+import * as fdsInspectCore from "@smoke-cloud/fds-inspect-core";
+import * as fdsInspect from "@smoke-cloud/fds-inspect";
+import { Command } from "@cliffy/command";
 import { open } from "./open.ts";
-import * as path from "jsr:@std/path@0.225.2";
+import * as path from "@std/path";
 import "./plot.ts";
 import { plotHRRDV } from "./plot.ts";
 

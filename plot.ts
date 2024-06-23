@@ -1,4 +1,4 @@
-import * as fdsInspectCore from "jsr:@smoke-cloud/fds-inspect-core@0.1.11";
+import * as fdsInspectCore from "@smoke-cloud/fds-inspect-core";
 import Chart, {
     type ChartConfiguration,
     type ChartData,
@@ -9,7 +9,7 @@ import annotationPlugin from "npm:chartjs-plugin-annotation@3.0.1";
 
 // import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
 import { createCanvas } from "jsr:@gfx/canvas@0.5.6";
-import * as path from "jsr:@std/path@0.225.2";
+import * as path from "@std/path";
 
 Chart.register(annotationPlugin);
 

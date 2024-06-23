@@ -1,5 +1,5 @@
 // deno-lint-ignore-file require-await
-import { join } from "jsr:@std/path@0.225.2";
+import { join } from "@std/path";
 const { os } = Deno.build;
 
 // Imported from x/is_docker

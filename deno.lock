@@ -3,15 +3,17 @@
   "packages": {
     "specifiers": {
       "jsr:@cliffy/command@1.0.0-rc.4": "jsr:@cliffy/command@1.0.0-rc.4",
+      "jsr:@cliffy/command@^1.0.0-rc.4": "jsr:@cliffy/command@1.0.0-rc.4",
       "jsr:@cliffy/flags@1.0.0-rc.4": "jsr:@cliffy/flags@1.0.0-rc.4",
       "jsr:@cliffy/table@1.0.0-rc.4": "jsr:@cliffy/table@1.0.0-rc.4",
       "jsr:@denosaurs/plug@1": "jsr:@denosaurs/plug@1.0.5",
       "jsr:@denosaurs/plug@1.0.5": "jsr:@denosaurs/plug@1.0.5",
       "jsr:@gfx/canvas@0.5.6": "jsr:@gfx/canvas@0.5.6",
       "jsr:@smoke-cloud/fds-inspect-core@0.1.11": "jsr:@smoke-cloud/fds-inspect-core@0.1.11",
-      "jsr:@smoke-cloud/fds-inspect-core@0.1.12": "jsr:@smoke-cloud/fds-inspect-core@0.1.12",
+      "jsr:@smoke-cloud/fds-inspect-core@0.1.13": "jsr:@smoke-cloud/fds-inspect-core@0.1.13",
+      "jsr:@smoke-cloud/fds-inspect-core@^0.1.13": "jsr:@smoke-cloud/fds-inspect-core@0.1.13",
       "jsr:@smoke-cloud/fds-inspect@0.1.11": "jsr:@smoke-cloud/fds-inspect@0.1.11",
-      "jsr:@smoke-cloud/fds-inspect@0.1.12": "jsr:@smoke-cloud/fds-inspect@0.1.12",
+      "jsr:@smoke-cloud/fds-inspect@^0.1.13": "jsr:@smoke-cloud/fds-inspect@0.1.13",
       "jsr:@std/assert@^0.214.0": "jsr:@std/assert@0.214.0",
       "jsr:@std/assert@^0.217.0": "jsr:@std/assert@0.217.0",
       "jsr:@std/assert@^0.221.0": "jsr:@std/assert@0.221.0",
@@ -19,6 +21,7 @@
       "jsr:@std/bytes@^1.0.0-rc.3": "jsr:@std/bytes@1.0.0",
       "jsr:@std/console@0.221": "jsr:@std/console@0.221.0",
       "jsr:@std/csv@0.224.3": "jsr:@std/csv@0.224.3",
+      "jsr:@std/csv@^0.224.3": "jsr:@std/csv@0.224.3",
       "jsr:@std/encoding@0.214": "jsr:@std/encoding@0.214.0",
       "jsr:@std/encoding@0.217.0": "jsr:@std/encoding@0.217.0",
       "jsr:@std/fmt@0.214": "jsr:@std/fmt@0.214.0",
@@ -30,6 +33,7 @@
       "jsr:@std/path@0.225.2": "jsr:@std/path@0.225.2",
       "jsr:@std/path@^0.214.0": "jsr:@std/path@0.214.0",
       "jsr:@std/path@^0.217.0": "jsr:@std/path@0.217.0",
+      "jsr:@std/path@^0.225.2": "jsr:@std/path@0.225.2",
       "jsr:@std/streams@^0.224.4": "jsr:@std/streams@0.224.5",
       "jsr:@std/text@0.221": "jsr:@std/text@0.221.0",
       "npm:chart.js": "npm:chart.js@4.4.0",
@@ -86,17 +90,22 @@
           "jsr:@std/csv@0.224.3"
         ]
       },
-      "@smoke-cloud/fds-inspect-core@0.1.12": {
-        "integrity": "7f9ba10d299af830da725314b952f608b0d4125068fa55a31e7ccc97cd8fb701",
+      "@smoke-cloud/fds-inspect-core@0.1.13": {
+        "integrity": "3739576d39bf4d1793c169e5ff1aff0985f9419b4d535a06171f9975d2c07ea2",
         "dependencies": [
-          "jsr:@std/csv@0.224.3"
+          "jsr:@std/csv@0.224.3",
+          "jsr:@std/path@0.225.2"
         ]
       },
       "@smoke-cloud/fds-inspect@0.1.11": {
         "integrity": "c43f368b89754170996ee59e44ee0186c881dd8a980cf6002b28a31f84bfc44d"
       },
-      "@smoke-cloud/fds-inspect@0.1.12": {
-        "integrity": "cdb4b3803d8c878b8c5ea11bb7e5ac146a873e487512d939cc0ccce41fbe3606"
+      "@smoke-cloud/fds-inspect@0.1.13": {
+        "integrity": "4ce906d9b6256eeee7466c3a9b2dc931e6de6f742403f293b755796f56e08ade",
+        "dependencies": [
+          "jsr:@smoke-cloud/fds-inspect-core@0.1.13",
+          "jsr:@std/path@0.225.2"
+        ]
       },
       "@std/assert@0.214.0": {
         "integrity": "55d398de76a9828fd3b1aa653f4dba3eee4c6985d90c514865d2be9bd082b140"
@@ -208,5 +217,13 @@
       }
     }
   },
-  "remote": {}
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "jsr:@cliffy/command@^1.0.0-rc.4",
+      "jsr:@smoke-cloud/fds-inspect-core@^0.1.13",
+      "jsr:@smoke-cloud/fds-inspect@^0.1.13",
+      "jsr:@std/path@^0.225.2"
+    ]
+  }
 }
