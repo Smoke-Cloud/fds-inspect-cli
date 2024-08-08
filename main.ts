@@ -7,20 +7,13 @@ import "./plot.ts";
 import { plotHRRDV } from "./plot.ts";
 
 await new Command()
-  .name("tway-server-manager")
-  .description("A simple reverse proxy example cli.")
-  .version("v1.0.0")
-  // .option("-p, --port <port:number>", "The port number for the local server.", {
-  //   default: 8080,
-  // })
-  // .option("--host <hostname>", "The host name for the local server.", {
-  //   default: "localhost",
-  // })
-  // .arguments("[domain]")
-  // .action(() => console.log("Main command called."))
-  // Child command 1.
+  .name("fds-inspect")
+  .description("Commands for inpsecting an FDS input file.")
+  .version("v0.1.16")
+  .action(function() {
+    this.showHelp();
+  })
   .command("count-cells", "Count the total number of cells")
-  // .option("-f, --foo", "Foo option.")
   .arguments("<input-path:string>")
   .action(async () => {
     // const fdsData = await getJsonTemp(args[0]);
@@ -29,7 +22,6 @@ await new Command()
   })
   // Get Threadway Send
   .command("meshes", "Display information on each mesh")
-  // .option("--master", "Pull the master branch version.")
   .arguments("<input-path:string>")
   .action(async () => {
     // const fdsFile = await getJson(args[0]);
