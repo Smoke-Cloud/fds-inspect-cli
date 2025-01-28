@@ -10,7 +10,7 @@ await new Command()
   .name("fds-inspect")
   .description("Commands for inpsecting an FDS input file.")
   .version("v0.1.16")
-  .action(function() {
+  .action(function () {
     this.showHelp();
   })
   .command("count-cells", "Count the total number of cells")
@@ -134,7 +134,7 @@ await new Command()
       await fdsInspect.renderTypstPdf(tempFile, typst);
       await open(tempFile);
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
       Deno.exit(1);
     }
   })
@@ -191,7 +191,7 @@ await new Command()
         await Deno.remove(hrrPlotFile);
       }
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
       Deno.exit(1);
     }
   })
