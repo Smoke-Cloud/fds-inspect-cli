@@ -16,12 +16,12 @@
     "jsr:@smoke-cloud/fds-inspect-core@0.1.18": "0.1.18",
     "jsr:@smoke-cloud/fds-inspect-core@~0.1.18": "0.1.18",
     "jsr:@smoke-cloud/fds-inspect@0.1.11": "0.1.11",
-    "jsr:@smoke-cloud/fds-inspect@~0.1.20": "0.1.20",
+    "jsr:@smoke-cloud/fds-inspect@~0.1.21": "0.1.21",
     "jsr:@std/assert@0.214": "0.214.0",
     "jsr:@std/assert@0.217": "0.217.0",
     "jsr:@std/assert@0.221": "0.221.0",
     "jsr:@std/assert@0.226": "0.226.0",
-    "jsr:@std/bytes@^1.0.0-rc.3": "1.0.4",
+    "jsr:@std/bytes@^1.0.0-rc.3": "1.0.5",
     "jsr:@std/console@0.221": "0.221.0",
     "jsr:@std/csv@0.224.3": "0.224.3",
     "jsr:@std/csv@~0.224.3": "0.224.3",
@@ -29,7 +29,7 @@
     "jsr:@std/encoding@0.217.0": "0.217.0",
     "jsr:@std/fmt@0.214": "0.214.0",
     "jsr:@std/fmt@0.221": "0.221.0",
-    "jsr:@std/fmt@~1.0.2": "1.0.4",
+    "jsr:@std/fmt@~1.0.2": "1.0.6",
     "jsr:@std/fs@0.214": "0.214.0",
     "jsr:@std/fs@0.217.0": "0.217.0",
     "jsr:@std/path@0.214": "0.214.0",
@@ -39,7 +39,7 @@
     "jsr:@std/path@~0.225.2": "0.225.2",
     "jsr:@std/streams@~0.224.4": "0.224.5",
     "jsr:@std/text@0.221": "0.221.0",
-    "jsr:@std/text@~1.0.7": "1.0.10",
+    "jsr:@std/text@~1.0.7": "1.0.11",
     "npm:chart.js@*": "4.4.0",
     "npm:chart.js@4.4.3": "4.4.3",
     "npm:chartjs-plugin-annotation@*": "3.0.1_chart.js@4.4.0",
@@ -116,8 +116,8 @@
     "@smoke-cloud/fds-inspect@0.1.11": {
       "integrity": "c43f368b89754170996ee59e44ee0186c881dd8a980cf6002b28a31f84bfc44d"
     },
-    "@smoke-cloud/fds-inspect@0.1.20": {
-      "integrity": "c01df8ee5196dde468e8b684c2432de7b002a68619ffa73382ede8757ebf4ffd",
+    "@smoke-cloud/fds-inspect@0.1.21": {
+      "integrity": "892fbef94e53b249191dfb3a3d14ac39dbdefdbc642eb873ca641c31c53cef58",
       "dependencies": [
         "jsr:@smoke-cloud/fds-inspect-core@0.1.18",
         "jsr:@std/path@0.225.2"
@@ -165,6 +165,9 @@
     "@std/bytes@1.0.4": {
       "integrity": "11a0debe522707c95c7b7ef89b478c13fb1583a7cfb9a85674cd2cc2e3a28abc"
     },
+    "@std/bytes@1.0.5": {
+      "integrity": "4465dd739d7963d964c809202ebea6d5c6b8e3829ef25c6a224290fbb8a1021e"
+    },
     "@std/console@0.221.0": {
       "integrity": "8f2afc1f3f14f5d6039c0c767f057e4aa1897d2210e167c4667cb155cafb9d11",
       "dependencies": [
@@ -191,6 +194,9 @@
     },
     "@std/fmt@1.0.4": {
       "integrity": "e14fe5bedee26f80877e6705a97a79c7eed599e81bb1669127ef9e8bc1e29a74"
+    },
+    "@std/fmt@1.0.6": {
+      "integrity": "a2c56a69a2369876ddb3ad6a500bb6501b5bad47bb3ea16bfb0c18974d2661fc"
     },
     "@std/fs@0.214.0": {
       "integrity": "bc880fea0be120cb1550b1ed7faf92fe071003d83f2456a1e129b39193d85bea",
@@ -238,6 +244,9 @@
     },
     "@std/text@1.0.10": {
       "integrity": "9dcab377450253c0efa9a9a0c731040bfd4e1c03f8303b5934381467b7954338"
+    },
+    "@std/text@1.0.11": {
+      "integrity": "f191fa22590cac8b1cdba6cc4ab97940e720f7cc67b3084e54405b428bf5843d"
     }
   },
   "npm": {
@@ -270,7 +279,7 @@
     "dependencies": [
       "jsr:@cliffy/command@^1.0.0-rc.4",
       "jsr:@smoke-cloud/fds-inspect-core@~0.1.18",
-      "jsr:@smoke-cloud/fds-inspect@~0.1.20",
+      "jsr:@smoke-cloud/fds-inspect@~0.1.21",
       "jsr:@std/path@~0.225.2"
     ]
   }

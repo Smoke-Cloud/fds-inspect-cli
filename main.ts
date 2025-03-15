@@ -116,18 +116,9 @@ await new Command()
   .arguments("<input-path:string>")
   .action(async (_options, ...args) => {
     const inputPath = args[0];
-    const fdsData = await fdsInspect.getJsonTemp(inputPath);
-    const verificationSummary = await fdsInspectCore.verifyInput(
-      fdsInspectCore.stdTestList,
-      fdsData,
-    );
-    const inputSummary = fdsInspectCore.summary.summarise_input(fdsData);
-    const typst = fdsInspect.renderVerificationTypst(
-      inputSummary,
-      verificationSummary,
-    );
+    const { title, typst } = await getInputTypst(inputPath);
     const tempFile = await Deno.makeTempFile({
-      prefix: fdsData.chid,
+      prefix: title,
       suffix: "_Verification.pdf",
     });
     try {
@@ -150,38 +141,29 @@ await new Command()
     const hrrData = await smvData.getHrr();
     let hrrPlotFile;
     if (hrrData) {
-      hrrPlotFile = await Deno.makeTempFile({ dir: ".", suffix: ".png" });
-      await plotHRRDV(
-        hrrPlotFile,
-        hrrData,
-        "Realised Heat Release Rate",
-        undefined,
-        {
-          hrrSpec: {
-            type: "simple",
-            tau_q: -300,
-            peak: 1000,
+      {
+        hrrPlotFile = await Deno.makeTempFile({ dir: ".", suffix: ".png" });
+        await plotHRRDV(
+          hrrPlotFile,
+          hrrData,
+          "Realised Heat Release Rate",
+          undefined,
+          {
+            hrrSpec: {
+              type: "simple",
+              tau_q: -300,
+              peak: 1000,
+            },
           },
-        },
-      );
+        );
+      }
     }
 
     const dirPath = path.dirname(inputPath);
     const inPath = path.join(dirPath, smvData.input_file);
-    const fdsData = await fdsInspect.getJsonTemp(inPath);
-    const verificationSummary = await fdsInspectCore.verifyInput(
-      fdsInspectCore.stdTestList,
-      fdsData,
-      smvData,
-    );
-    const inputSummary = fdsInspectCore.summary.summarise_input(fdsData);
-    const typst = fdsInspect.renderVerificationTypst(
-      inputSummary,
-      verificationSummary,
-      hrrPlotFile,
-    );
+    const { title, typst } = await getInputTypst(inPath, hrrPlotFile);
     const tempFile = await Deno.makeTempFile({
-      prefix: fdsData.chid,
+      prefix: title,
       suffix: "_Verification.pdf",
     });
     try {
@@ -241,3 +223,31 @@ await new Command()
     // const fdsFile = await getJson(args[0]);
   })
   .parse(Deno.args);
+
+async function getInputTypst(
+  inputPath: string,
+  hrrPlotFile?: string,
+): Promise<{ title: string; typst: string }> {
+  const fdsData = await fdsInspect.getJsonTemp(inputPath);
+  let typst;
+  let title = path.basename(inputPath, ".fds");
+  if (fdsData.success) {
+    title = fdsData.data.chid;
+    const verificationSummary = await fdsInspectCore.verifyInput(
+      fdsInspectCore.stdTestList,
+      fdsData.data,
+    );
+    const inputSummary = fdsInspectCore.summary.summarise_input(fdsData.data);
+    typst = fdsInspect.renderVerificationTypst(
+      inputSummary,
+      verificationSummary,
+      hrrPlotFile,
+    );
+  } else {
+    typst = fdsInspect.renderTypstErrorMessage(
+      title,
+      fdsData.error,
+    );
+  }
+  return { title, typst };
+}

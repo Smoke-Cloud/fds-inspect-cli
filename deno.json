@@ -1,6 +1,6 @@
 {
   "name": "@smoke-cloud/fds-inspect-cli",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "license": "AGPL-3.0-or-later",
   "exports": "./main.ts",
   "tasks": {
@@ -8,7 +8,7 @@
   },
   "imports": {
     "@cliffy/command": "jsr:@cliffy/command@^1.0.0-rc.4",
-    "@smoke-cloud/fds-inspect": "jsr:@smoke-cloud/fds-inspect@^0.1.20",
+    "@smoke-cloud/fds-inspect": "jsr:@smoke-cloud/fds-inspect@^0.1.21",
     "@smoke-cloud/fds-inspect-core": "jsr:@smoke-cloud/fds-inspect-core@^0.1.18",
     "@std/path": "jsr:@std/path@^0.225.2"
   }
