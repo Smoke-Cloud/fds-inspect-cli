@@ -437,6 +437,83 @@ export function plotHRRDV(
   return plotDv(plotPath, vecs, name, extras);
 }
 
+export function plotHRRDV2(
+  plotPath: string,
+  hrrDV: fdsInspectCore.smv.DataVector,
+  name: string,
+  config?: { offset?: number },
+  spec?: {
+    hrrSpec?: fdsInspectCore.fds.HrrSpecSimple;
+    bound?: number;
+    door?: { open: number; close: number };
+    sprinklerTime?: number;
+    detectorTime?: number;
+  },
+) {
+  const offset = config?.offset ?? 0;
+  let maxHRR = 0;
+  const { slowDV, mediumDV, fastDV, ultrafastDV } = createStdHRRCurves(
+    hrrDV,
+    offset,
+  );
+
+  const vecs: (fdsInspectCore.smv.DataVector & {
+    color?: string;
+    dash?: number[];
+  })[] = [
+    { color: "#008000", dash: [10, 5], ...slowDV },
+    { color: "#FF0000", dash: [10, 5], ...mediumDV },
+    { color: "#00BFBF", dash: [10, 5], ...fastDV },
+    { color: "#BF00BF", dash: [10, 5], ...ultrafastDV },
+    { color: "#222222", ...hrrDV },
+  ];
+  for (const p of hrrDV.values) {
+    maxHRR = Math.max(maxHRR, p.y);
+  }
+
+  if (maxHRR == 0) maxHRR = 1;
+  const extras: {
+    maxTargetHrr?: number;
+    lowerBound?: number;
+    upperBound?: number;
+    door?: { open: number; close: number };
+    sprinklerTime?: number;
+    detectorTime?: number;
+    chartExtras: ChartExtra[];
+  } = {
+    maxTargetHrr: maxHRR,
+    chartExtras: [],
+  };
+  {
+    const filteredVec = structuredClone(hrrDV);
+    // wma(filteredVec, 20);
+    filteredVec.name = "Time-Averaged (WMA)";
+    // filteredVec.opts = { "lt 2" };
+    vecs.push(filteredVec);
+  }
+  if (spec?.door) {
+    extras.chartExtras.push({
+      type: "chart-range",
+      axis: "x",
+      start: spec.door.open,
+      end: spec.door.open,
+      label: "Door Open",
+    });
+  }
+  if (spec?.hrrSpec) {
+    extras.chartExtras.push({
+      type: "chart-band",
+      dvA: fdsInspectCore.fds.generateHrr(spec?.hrrSpec, hrrDV, 0.9),
+      dvB: fdsInspectCore.fds.generateHrr(spec?.hrrSpec, hrrDV, 1.1),
+      label: "10% Bounds",
+    });
+  }
+  extras.door = spec?.door;
+  extras.sprinklerTime = spec?.sprinklerTime;
+  extras.detectorTime = spec?.detectorTime;
+  return plotDv(plotPath, vecs, name, extras);
+}
+
 // Weighted moving average
 function _wma(dv: fdsInspectCore.smv.DataVector, window: number) {
   if (dv.values.length <= 1) {
